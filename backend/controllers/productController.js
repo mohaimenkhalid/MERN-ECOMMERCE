@@ -64,3 +64,19 @@ exports.deleteProduct = async (req, res) => {
         "message": "Product deleted successfully"
     })
 }
+
+//get product details
+
+exports.getProductDetails = async (req, res) => {
+    const product = await Product.findById(req.params.id)
+    if(!product) {
+        return res.status(400).json({
+            success: false,
+            message: "Product not found"
+        })
+    }
+    res.status(200).json({
+        status: true,
+        product
+    })
+}
